@@ -127,13 +127,13 @@ nav a:hover{color:var(--ink);border-color:var(--red)}
 @media (max-width:820px){.hero-grid{grid-template-columns:1fr}.portrait{max-width:340px;order:-1;aspect-ratio:1/1}}
 
 /* facts */
-.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-width:720px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .facts div{padding:22px 20px;border-left:1px solid var(--line)}
 .facts div:first-child{border-left:0;padding-left:0}
 .facts dt{font:600 1.7rem var(--serif);margin:0}
 .facts dd{margin:2px 0 0;color:var(--muted);font-size:.95rem}
 .src-note{font-size:.85rem;color:var(--muted);margin-top:10px}
-@media (max-width:760px){.facts{grid-template-columns:1fr 1fr}.facts div:nth-child(3){border-left:0;padding-left:0}.facts div{border-top:1px solid var(--line)}.facts div:nth-child(-n+2){border-top:0}}
+@media (max-width:520px){.facts{grid-template-columns:1fr}.facts div{border-left:0;padding-left:0}.facts div+div{border-top:1px solid var(--line)}}
 
 /* conditions */
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,48px)}
@@ -259,8 +259,8 @@ footer.site p{margin:0 0 .5rem;font-size:.92rem;opacity:.85;max-width:90ch}
       <div>
         <h1 id="h1"><span data-cfg="fullName">Дина Петровна Матвеева</span>, кардиолог</h1>
         <p class="roles">Кардиолог, терапевт, врач функциональной диагностики</p>
-        <p class="lead">Подробно разберу ваши жалобы на сердце и давление и проанализирую каждую. Если есть показания, сразу сделаю и расшифрую ЭКГ и ЭхоКГ.</p>
-        <p class="lead">Вовремя начатое и правильно подобранное лечение снижает риск инфаркта, инсульта, сердечной и почечной недостаточности.</p>
+        <p class="lead">Приходите с тем, что вас беспокоит: сердцебиение, давление, одышка или просто тревога за сердце. Я выслушаю, разберу каждую жалобу и объясню, что с ней делать. Если нужно, сделаю ЭКГ и ЭхоКГ прямо на приёме и сразу расскажу, что они показали.</p>
+        <p class="lead">Чем раньше начато правильное лечение, тем ниже риск инфаркта, инсульта, сердечной и почечной недостаточности.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#book">Как записаться</a>
           <a class="btn btn-ghost" id="heroOnline" data-link="doctis" href="https://www.doctis.ru/doctors/matveeva-dina" target="_blank" rel="noopener">Консультация онлайн</a>
@@ -282,11 +282,9 @@ footer.site p{margin:0 0 .5rem;font-size:.92rem;opacity:.85;max-width:90ch}
     <h2 id="about-h" class="sr" style="position:absolute;left:-9999px">Коротко о враче</h2>
     <dl class="facts">
       <div><dt data-cfg="statYears">7 лет</dt><dd>врачебного стажа</dd></div>
-      <div><dt data-cfg="statConsult">780</dt><dd>онлайн-консультаций</dd></div>
-      <div><dt data-cfg="statReviews">69</dt><dd>отзывов на Doctis</dd></div>
       <div><dt data-cfg="statSpecs">3</dt><dd>специальности: кардиология, терапия, функциональная диагностика</dd></div>
     </dl>
-    <p class="src-note" id="statsNote">Цифры о стаже и консультациях взяты с профиля на Doctis по состоянию на <span data-cfg="statsDate">8 ноября 2026 года</span>.</p>
+    <p class="src-note" id="statsNote">Стаж указан по данным с профиля на Doctis на <span data-cfg="statsDate">8 ноября 2026 года</span>.</p>
   </div>
 </section>
 
@@ -507,7 +505,7 @@ const CONFIG = {
   },
 
   /* Цифры под заголовком и оценки пациентов */
-  stats: { years: '7 лет', consultations: '780', reviews: '69', specialties: '3', date: '8 ноября 2026 года', showNote: true },
+  stats: { years: '7 лет', specialties: '3', date: '8 ноября 2026 года', showNote: true },
   badges: ['Грамотный: 112 оценок', 'Хорошо объясняет: 111 оценок'],
 
   /* Онлайн-консультация */
@@ -530,8 +528,7 @@ const CONFIG = {
   const set = (k, v) => $$(`[data-cfg="${k}"]`).forEach(e => { e.textContent = v; });
   set('shortName', C.shortName); set('fullName', C.fullName);
   set('phone', C.phone); set('email', C.email); set('address', C.address); set('clinicAddress', C.clinicAddress);
-  set('statYears', C.stats.years); set('statConsult', C.stats.consultations);
-  set('statReviews', C.stats.reviews); set('statSpecs', C.stats.specialties);
+  set('statYears', C.stats.years); set('statSpecs', C.stats.specialties);
   set('statsDate', C.stats.date); set('priceDate', C.online.priceDate); set('price', C.online.price);
   if (!C.stats.showNote) $('#statsNote')?.remove();
   if (!C.online.showPrice) $('#priceLine')?.remove();
